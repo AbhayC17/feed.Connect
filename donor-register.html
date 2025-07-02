@@ -34,11 +34,9 @@
 
       <label for="food">Food Description:</label><br>
       <textarea id="food" name="food" rows="4" required></textarea><br><br>
-
-     <label for="location">Pick Location on Map:</label>
-<div id="map" style="height: 300px; border-radius: 10px; margin-bottom: 1rem;"></div>
-<input type="text" id="location" name="location" readonly required />
-<br><br>
+      
+      <label for="location">Pickup Location:</label><br>
+      <input type="text" id="location" name="location" required><br><br>
 
       <button type="submit" class="btn">Register & Donate</button>
     </form>
@@ -51,39 +49,6 @@
   <script src="script.js"></script>
   <!-- Floating Button -->
 <button class="fab" onclick="window.location.href='dashboard.html'">📊</button>
-<script>
-  let map, marker;
-
-  function initMap() {
-    const defaultLoc = { lat: 17.3850, lng: 78.4867 }; // Hyderabad or your city
-    map = new google.maps.Map(document.getElementById("map"), {
-      center: defaultLoc,
-      zoom: 12,
-    });
-
-    marker = new google.maps.Marker({
-      position: defaultLoc,
-      map,
-      draggable: true,
-    });
-
-    updateLocationInput(defaultLoc);
-
-    marker.addListener('dragend', () => {
-      const pos = marker.getPosition();
-      updateLocationInput(pos);
-    });
-  }
-
-  function updateLocationInput(pos) {
-    document.getElementById("location").value = `Lat: ${pos.lat().toFixed(5)}, Lng: ${pos.lng().toFixed(5)}`;
-  }
-</script>
-
-<!-- Load Google Maps API -->
-<script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXiRAlKMXlQ9cmnIwzZtVPTR-0FAIl7qI&callback=initMap">
-</script>
 
 </body>
 </html>
