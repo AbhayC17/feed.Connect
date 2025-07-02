@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Organization Registration | FeedConnect</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>FeedConnect</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="donor-register.html">Donor</a>
+      <a href="org-register.html">Organization</a>
+      <a href="login.html">Login</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>New Organization Registration</h2>
+    <form id="orgForm">
+      <label for="orgName">Organization Name:</label><br>
+      <input type="text" id="orgName" name="orgName" required><br><br>
+
+      <label for="orgEmail">Email Address:</label><br>
+      <input type="email" id="orgEmail" name="orgEmail" required><br><br>
+
+      <label for="orgPhone">Phone Number:</label><br>
+      <input type="tel" id="orgPhone" name="orgPhone" required><br><br>
+
+      <label for="orgType">Type of Organization:</label><br>
+      <select id="orgType" name="orgType" required>
+        <option value="">Select</option>
+        <option value="NGO">NGO</option>
+        <option value="Orphanage">Orphanage</option>
+        <option value="Old Age Home">Old Age Home</option>
+        <option value="Other">Other</option>
+      </select><br><br>
+
+      <label for="orgAddress">Address:</label><br>
+      <textarea id="orgAddress" name="orgAddress" rows="4" required></textarea><br><br>
+
+      <button type="submit" class="btn">Register Organization</button>
+    </form>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 FeedConnect | Made with ❤️</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const orgForm = document.getElementById('orgForm');
+
+      if (orgForm) {
+        orgForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+
+          const formData = {
+            orgName: document.getElementById('orgName').value,
+            orgEmail: document.getElementById('orgEmail').value,
+            orgPhone: document.getElementById('orgPhone').value,
+            orgType: document.getElementById('orgType').value,
+            orgAddress: document.getElementById('orgAddress').value
+          };
+
+          try {
+            await fetch('https://script.google.com/macros/s/AKfycby_SGKLwWFH7ihHEuv78pzqfCu4NtGmBlwSTThMtf4gH3z2w7t0KbyCIj4bkkVQASqW/exec', {
+              method: 'POST',
+              mode: 'no-cors',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(formData)
+            });
+
+            window.location.href = 'thankyou.html';
+          } catch (error) {
+            alert('Something went wrong. Please try again later.');
+            console.error(error);
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
