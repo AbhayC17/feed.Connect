@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us | FeedConnect</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>FeedConnect</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="donor-register.html">Donor</a>
+      <a href="org-register.html">Organization</a>
+      <a href="login.html">Login</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Contact Us</h2>
+    <form id="contactForm">
+      <label for="contactName">Your Name:</label><br>
+      <input type="text" id="contactName" name="contactName" required><br><br>
+
+      <label for="contactEmail">Your Email:</label><br>
+      <input type="email" id="contactEmail" name="contactEmail" required><br><br>
+
+      <label for="contactMessage">Message:</label><br>
+      <textarea id="contactMessage" name="contactMessage" rows="5" required></textarea><br><br>
+
+      <button type="submit" class="btn">Send Message</button>
+    </form>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 FeedConnect | Made with ❤️</p>
+  </footer>
+
+  <script>
+    document.getElementById("contactForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const formData = {
+        contactName: document.getElementById("contactName").value,
+        contactEmail: document.getElementById("contactEmail").value,
+        contactMessage: document.getElementById("contactMessage").value
+      };
+
+      try {
+        await fetch('https://script.google.com/macros/s/AKfycby_SGKLwWFH7ihHEuv78pzqfCu4NtGmBlwSTThMtf4gH3z2w7t0KbyCIj4bkkVQASqW/exec', {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        });
+
+        alert("Message sent! We’ll get back to you soon.");
+        document.getElementById("contactForm").reset();
+      } catch (error) {
+        alert("Failed to send message.");
+        console.error(error);
+      }
+    });
+  </script>
+</body>
+</html>
