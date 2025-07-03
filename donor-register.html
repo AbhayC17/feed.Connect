@@ -12,7 +12,7 @@
     <h1>FeedConnect</h1>
     <nav>
       <a href="index.html">Home</a>
-      <a href="donor-register.html">Donor</a>
+      <a href="donor-register.html" class="active">Donor</a>
       <a href="org-register.html">Organization</a>
       <a href="login.html">Login</a>
       <a href="contact.html">Contact</a>
@@ -37,6 +37,13 @@
       <label for="location">Pickup Location:</label><br>
       <input type="text" id="location" name="location" required><br><br>
 
+      <label for="selectedOrg">Choose Organization to Donate To:</label><br>
+      <select id="selectedOrg" name="selectedOrg" required>
+        <option value="">-- Loading organizations... --</option>
+      </select><br><br>
+
+      <div id="orgDetails" style="margin-top: 10px; font-size: 0.9rem; color: #444;"></div><br>
+
       <button type="submit" class="btn">Register & Donate</button>
     </form>
   </main>
@@ -45,9 +52,11 @@
     <p>&copy; 2025 FeedConnect | Made with ❤️</p>
   </footer>
 
-  <script src="script.js"></script>
-  <!-- Floating Button -->
-<button class="fab" onclick="window.location.href='dashboard.html'">📊</button>
+  <!-- Floating Dashboard Button -->
+  <button class="fab" onclick="window.location.href='dashboard.html'">📊</button>
 
+  <!-- External Script -->
+  <script src="script.js"></script>
 </body>
 </html>
+
