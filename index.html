@@ -9,7 +9,10 @@
 
 </head>
 <body>
-  <div id="floatingClock"></div><br><br>
+  <div id="floatingClockContainer">
+  <div id="floatingClock"></div>
+  <button id="toggleClockBtn" onclick="toggleClock()">👁️</button>
+</div>
   <header>
     <h1>FeedConnect</h1>
     <nav>
@@ -99,8 +102,22 @@ function updateClock() {
     `${greeting} | ${dateString} | ${timeString}`;
 }
 
+function toggleClock() {
+  const clock = document.getElementById("floatingClock");
+  const btn = document.getElementById("toggleClockBtn");
+
+  if (clock.style.display === "none") {
+    clock.style.display = "inline-block";
+    btn.textContent = "👁️";
+  } else {
+    clock.style.display = "none";
+    btn.textContent = "🙈";
+  }
+}
+
 setInterval(updateClock, 1000);
 updateClock();
 </script>
+
 </body>
 </html>
