@@ -342,10 +342,10 @@ footer {
   margin-bottom: 10px;
 }
 #siteTitle {
-  font-family: 'Dancing Script', cursive;
+  font-family: 'Pacifico', cursive;
   font-size: 3.5rem;
-  color: #6a1b9a;
-  text-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+  color: #ffffff;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
   letter-spacing: 1px;
   margin: 20px 0;
   text-align: center;
