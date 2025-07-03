@@ -39,6 +39,28 @@
   </footer>
   <!-- Floating Button -->
 <button class="fab" onclick="window.location.href='dashboard.html'">📊</button>
+<script>
+function updateClock() {
+  const now = new Date();
+  const timeString = now.toLocaleTimeString('en-IN', {
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: true
+  });
 
+  const dateString = now.toLocaleDateString('en-IN', {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric'
+  });
+
+  document.getElementById('liveClock').textContent = `${dateString} | ${timeString}`;
+}
+
+setInterval(updateClock, 1000);
+updateClock(); // Run once on load
+</script>
 </body>
 </html>
