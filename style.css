@@ -341,4 +341,13 @@ footer {
   color: #43a047;
   margin-bottom: 10px;
 }
+#siteTitle {
+  font-family: 'Dancing Script', cursive;
+  font-size: 3.5rem;
+  color: #6a1b9a;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+  letter-spacing: 1px;
+  margin: 20px 0;
+  text-align: center;
+}
 
