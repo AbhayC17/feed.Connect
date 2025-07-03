@@ -343,9 +343,9 @@ footer {
 }
 #siteTitle {
   font-family: 'Pacifico', cursive;
-  font-size: 3.5rem;
-  color: #ffffff;
-  text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+  font-size: 3.8rem;
+  color: white !important;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
   letter-spacing: 1px;
   margin: 20px 0;
   text-align: center;
