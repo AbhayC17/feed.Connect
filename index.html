@@ -9,8 +9,8 @@
 
 </head>
 <body>
+  <div id="floatingClock"></div>
   <header>
-    <div id="liveClock" style="margin-top: 8px; font-weight: bold; font-size: 1rem;"></div>
     <h1>FeedConnect</h1>
     <nav>
       <a href="index.html">Home</a>
@@ -42,6 +42,19 @@
 <script>
 function updateClock() {
   const now = new Date();
+  const hours = now.getHours();
+  let greeting = "";
+
+  if (hours >= 5 && hours < 12) {
+    greeting = "🌅 Good Morning!";
+  } else if (hours >= 12 && hours < 17) {
+    greeting = "🌞 Good Afternoon!";
+  } else if (hours >= 17 && hours < 21) {
+    greeting = "🌇 Good Evening!";
+  } else {
+    greeting = "🌙 Good Night!";
+  }
+
   const timeString = now.toLocaleTimeString('en-IN', {
     hour: '2-digit',
     minute: '2-digit',
@@ -56,11 +69,12 @@ function updateClock() {
     year: 'numeric'
   });
 
-  document.getElementById('liveClock').textContent = `${dateString} | ${timeString}`;
+  document.getElementById('floatingClock').textContent =
+    `${greeting} | ${dateString} | ${timeString}`;
 }
 
 setInterval(updateClock, 1000);
-updateClock(); // Run once on load
+updateClock();
 </script>
 </body>
 </html>
