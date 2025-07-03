@@ -5,15 +5,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const orgSelect = document.getElementById('selectedOrg');
   const orgDetails = document.getElementById('orgDetails');
 
-  // 🔄 Load Organizations into Dropdown
-  fetch('https://script.google.com/macros/s/AKfycby_SGKLwWFH7ihHEuv78pzqfCu4NtGmBlwSTThMtf4gH3z2w7t0KbyCIj4bkkVQASqW/exec?action=getRegisteredOrganizations')
+  // Fetch and populate organizations
+  fetch('https://script.google.com/macros/s/AKfycby_SGKLwWFH7ihHEuv78pzqfCu4NtGmBlwSTThMtf4gH3z2w7t0KbyCIj4bkkVQASqW/exec?action=getRegisteredOrganizations', {
+    method: 'GET',
+    mode: 'cors'
+  })
     .then(res => res.json())
     .then(data => {
       orgData = data;
       orgSelect.innerHTML = '<option value="">-- Select an organization --</option>';
       data.forEach((org, index) => {
         const option = document.createElement('option');
-        option.value = index; // use index to reference full org details
+        option.value = index;
         option.textContent = `${org.name} (${org.location})`;
         orgSelect.appendChild(option);
       });
@@ -23,14 +26,13 @@ document.addEventListener('DOMContentLoaded', () => {
       orgSelect.innerHTML = '<option value="">-- Failed to load organizations --</option>';
     });
 
-  // 🧾 Show Selected Organization Details
+  // Show selected organization details
   orgSelect.addEventListener('change', () => {
     const index = orgSelect.value;
     if (index === '') {
       orgDetails.innerHTML = '';
       return;
     }
-
     const org = orgData[index];
     orgDetails.innerHTML = `
       <strong>${org.name}</strong><br>
@@ -40,11 +42,10 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
   });
 
-  // 📨 Submit Donor Form
+  // Handle form submission
   if (donorForm) {
     donorForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-
       const selectedIndex = orgSelect.value;
       const selectedOrg = orgData[selectedIndex]?.name || '';
 
@@ -67,7 +68,6 @@ document.addEventListener('DOMContentLoaded', () => {
           body: JSON.stringify(formData)
         });
 
-        // ✅ Redirect after success
         window.location.href = 'thankyou.html';
       } catch (error) {
         alert('Something went wrong. Please try again later.');
@@ -76,3 +76,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
