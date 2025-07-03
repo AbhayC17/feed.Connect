@@ -5,11 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const orgSelect = document.getElementById('selectedOrg');
   const orgDetails = document.getElementById('orgDetails');
 
-  // Fetch and populate organizations
-  fetch('https://script.google.com/macros/s/AKfycby_SGKLwWFH7ihHEuv78pzqfCu4NtGmBlwSTThMtf4gH3z2w7t0KbyCIj4bkkVQASqW/exec?action=getRegisteredOrganizations', {
-    method: 'GET',
-    mode: 'cors'
-  })
+  // Fetch organizations
+  fetch("https://script.google.com/macros/s/AKfycby_SGKLwWFH7ihHEuv78pzqfCu4NtGmBlwSTThMtf4gH3z2w7t0KbyCIj4bkkVQASqW/exec?action=getRegisteredOrganizations")
     .then(res => res.json())
     .then(data => {
       orgData = data;
@@ -21,12 +18,12 @@ document.addEventListener('DOMContentLoaded', () => {
         orgSelect.appendChild(option);
       });
     })
-    .catch(err => {
-      console.error('Error fetching organizations:', err);
+    .catch(error => {
+      console.error('Error loading organizations:', error);
       orgSelect.innerHTML = '<option value="">-- Failed to load organizations --</option>';
     });
 
-  // Show selected organization details
+  // Show organization details
   orgSelect.addEventListener('change', () => {
     const index = orgSelect.value;
     if (index === '') {
@@ -42,10 +39,11 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
   });
 
-  // Handle form submission
+  // Form submission
   if (donorForm) {
     donorForm.addEventListener('submit', async (e) => {
       e.preventDefault();
+
       const selectedIndex = orgSelect.value;
       const selectedOrg = orgData[selectedIndex]?.name || '';
 
@@ -70,10 +68,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         window.location.href = 'thankyou.html';
       } catch (error) {
-        alert('Something went wrong. Please try again later.');
+        alert('Submission failed. Please try again later.');
         console.error(error);
       }
     });
   }
 });
+
 
