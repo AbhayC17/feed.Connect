@@ -251,19 +251,31 @@ footer {
 .btn:hover {
   transform: scale(1.05);
 }
-#liveClock {
+#floatingClock {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background-color: rgba(103, 58, 183, 0.95); /* Deep purple */
   color: #fff;
-  background-color: rgba(67, 160, 71, 0.9); /* semi-transparent green */
-  display: inline-block;
-  padding: 6px 12px;
+  padding: 10px 18px;
+  font-size: 0.95rem;
+  font-weight: bold;
   border-radius: 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
   animation: fadeInClock 1s ease-in-out;
+  max-width: 90vw;
 }
 
 @keyframes fadeInClock {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 
